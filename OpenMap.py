@@ -144,7 +144,7 @@ def update_phone(phone):
     return phone
 
 for event, elem in ET.iterparse(DUL_DATA):
-    if elem.tag=="way":
+    if elem.tag == "node" or elem.tag=="way":
         for tag in elem.iter("tag"):
             if tag.attrib['k']=="phone":
                 ##print "{!r}: {!r}".format(tag.attrib['k'],tag.attrib['v'])
