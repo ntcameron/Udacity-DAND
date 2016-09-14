@@ -144,12 +144,14 @@ def update_phone(phone):
     return phone
 
 for event, elem in ET.iterparse(DUL_DATA):
-    if elem.tag == "node" or elem.tag=="way":
-        for tag in elem.iter("tag"):
-            if tag.attrib['k']=="phone":
-                ##print "{!r}: {!r}".format(tag.attrib['k'],tag.attrib['v'])
-                ##print "corrected", update_phone(tag.attrib['v'])        
-                print "raw: {!r}\ncorrected: {!r}".format(tag.attrib['v'],update_phone(tag.attrib['v']))
+    ##if elem.tag == "node" or elem.tag=="way":
+    if elem.tag in ("node","way"):
+        ##for tag in elem.iter("tag"):
+          ##  if tag.attrib['k']=="phone":
+        for tag in elem.iterfind("tag[@k='phone']"):
+            ##print "{!r}: {!r}".format(tag.attrib['k'],tag.attrib['v'])
+            ##print "corrected", update_phone(tag.attrib['v'])        
+            print "raw: {!r}\ncorrected: {!r}".format(tag.attrib['v'],update_phone(tag.attrib['v']))
 
 
 OSM_PATH = "C:\Users\cameronn\Desktop\duluth2.osm"
